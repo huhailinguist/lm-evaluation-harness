@@ -1,0 +1,25 @@
+group: ChineseNLIDiagnostics
+task:
+  - ChineseNLIDiagnostics_Anaphora
+  - ChineseNLIDiagnostics_ArgumentStructure
+  - ChineseNLIDiagnostics_Classifier
+  - ChineseNLIDiagnostics_CommonSense
+  - ChineseNLIDiagnostics_Comparative
+  - ChineseNLIDiagnostics_DoubleNegation
+  - ChineseNLIDiagnostics_Idioms
+  - ChineseNLIDiagnostics_LexicalSemantics
+  - ChineseNLIDiagnostics_Monotonicity
+  - ChineseNLIDiagnostics_Negation
+  - ChineseNLIDiagnostics_NonCoreArguments
+  - ChineseNLIDiagnostics_ProDrop
+  - ChineseNLIDiagnostics_TimeOfEvent
+  - ChineseNLIDiagnostics_WorldKnowledge
+
+
+
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: False
+metadata:
+  version: 1.0

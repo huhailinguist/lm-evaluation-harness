@@ -1,0 +1,31 @@
+
+task: swordsman
+tag:
+  - multiple_choice  
+dataset_path: Junrui1202/Swordsman
+dataset_name: null
+output_type: multiple_choice  
+test_split: train
+
+process_docs: !function utils.process_docs
+doc_to_text: |
+  对于以下对话，请识别特定人物的话语中的的言外之意，在给出的四个选项中选择一个你认为的正确答案。
+  {{dialogue}}
+  请根据以上情景判断{{character}}说的"{{utterance}}"有什么言外之意。
+  A. {{options[0]}}
+  B. {{options[1]}}
+  C. {{options[2]}}
+  D. {{options[3]}}
+  答案:
+doc_to_target: "{{label}}"  
+doc_to_choice: ["A", "B", "C", "D"]
+
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 1.0
+

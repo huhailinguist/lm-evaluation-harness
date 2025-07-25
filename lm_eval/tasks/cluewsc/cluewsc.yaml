@@ -1,0 +1,27 @@
+task: cluewsc
+tag:
+  - multiple_choice
+dataset_path: wyp/clue-wsc
+dataset_name: null
+output_type: multiple_choice
+test_split: validation
+
+process_docs: !function utils.process_docs
+
+doc_to_text: |
+  请阅读以下句子，并判断文中的 "{{span2_text}}" 是否指代 "{{span1_text}}"，在给出的两个选项中选择你认为正确的答案。
+  {{text}}
+  问题：文中的 "{{span2_text}}" 是否指代 "{{span1_text}}"？
+  A. 是
+  B. 否
+  答案:
+doc_to_target: "{{label}}"
+doc_to_choice: ["A", "B"]
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 1.0

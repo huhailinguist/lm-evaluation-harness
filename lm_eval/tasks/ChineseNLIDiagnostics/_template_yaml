@@ -1,0 +1,18 @@
+dataset_path: Junrui1202/diagnostics-new-with-categories
+dataset_kwargs:
+  revision: "main"
+output_type: multiple_choice
+validation_split: train
+process_docs: !function utils.process_docs
+doc_to_text: "你是语言学领域的专家，\n请阅读下列前提和问题，基于语言现象进行严谨分析。\n前提：{{sentence1}}\n问题：{{sentence2}}\n请结合语言现象、关键词和语境，详细说明推理过程，最后给出判断（对/错/不一定）：\n答案："
+doc_to_target: "{{choice}}"
+doc_to_choice:
+  - "对"
+  - "不一定"
+  - "错"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
