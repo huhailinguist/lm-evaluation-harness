@@ -152,6 +152,7 @@ class VLLM(TemplateLM):
         assert max_length is None or max_model_len is None, (
             "Either max_length or max_model_len may be provided, but not both"
         )
+        kwargs.pop("device", None)
         self.think_end_token = think_end_token
         self.V1 = os.environ.get("VLLM_USE_V1", "1") != "0"
         self._max_length = max_model_len if max_model_len is not None else max_length
@@ -209,7 +210,7 @@ class VLLM(TemplateLM):
         )
         self.tokenizer = configure_pad_token(self.tokenizer, model_config=self._config)
         self.chat_template_args = chat_template_args or {}
-        self.enable_thinking = chat_template_args.pop(
+        self.enable_thinking = self.chat_template_args.pop(
             "enable_thinking", enable_thinking
         )
         self.add_bos_token = add_bos_token
