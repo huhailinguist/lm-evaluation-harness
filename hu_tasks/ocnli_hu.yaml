@@ -1,0 +1,31 @@
+task: ocnli_hu
+dataset_path: json  # Or your huggingface path
+dataset_kwargs:
+  data_files: /Users/hai/Documents/scratch/lm-evaluation-harness/hu_tasks/nli_data.jsonl
+output_type: multiple_choice
+training_split: null
+validation_split: null
+test_split: train # Adjust based on your data split
+
+# 1. format the input prompt
+doc_to_text: "前提：{{sentence1}}\n假设：{{sentence2}}\n关系："
+
+# 2. Define the choices the model selects from
+doc_to_choice: ["蕴含", "矛盾", "中立"]
+
+# 3. Map your dataset's label to the index of the choice above
+# Assuming your data has "label": "contradiction" or 0/1/2
+# doc_to_target: >
+#   {% if label == "entailment" %} 0
+#   {% elif label == "contradiction" %} 1
+#   {% else %} 2 
+#   {% endif %}
+doc_to_target: "{{ {'entailment': 0, 'contradiction': 1, 'neutral': 2}[label] }}"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
