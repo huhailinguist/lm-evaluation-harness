@@ -1,0 +1,28 @@
+task: ocnli_300_samples2
+tag:
+  - multiple_choice
+dataset_path: json
+dataset_kwargs:
+  data_files: /root/autodl-tmp/lm-evaluation-harness/hu_tasks/nli_data.jsonl
+output_type: multiple_choice
+test_split: train
+
+process_docs: !function utils.process_docs2
+
+doc_to_text: "{{my_custom_prompt}}"
+doc_to_target: target_index
+doc_to_choice:
+  - "一定成立"
+  - "有可能成立"
+  - "不可能成立"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 2.0

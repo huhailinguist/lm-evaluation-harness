@@ -1,0 +1,3 @@
+Model,Task,"acc,none","acc_norm,none","acc_norm_stderr,none","acc_stderr,none",alias
+/root/autodl-tmp/models/Qwen3-0.6B-Base/,ocnli_all,0.39255419415645615,0.39255419415645615,0.010603109477974085,0.010603109477974085,ocnli_all
+/root/autodl-tmp/models/Qwen3-1.7B-Base/,ocnli_all,0.27945334590009424,0.27945334590009424,0.009743508661655685,0.009743508661655685,ocnli_all
